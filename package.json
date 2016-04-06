@@ -1,0 +1,26 @@
+{
+  "name": "mma-tcg-client-side",
+  "version": "1.0.0",
+  "description": "Yay readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watchJS": "webpack --progress --colors --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ben-scully/mma-tcg-client-side.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ben-scully/mma-tcg-client-side/issues"
+  },
+  "homepage": "https://github.com/ben-scully/mma-tcg-client-side#readme",
+  "dependencies": {
+    "HTTPRequest": "^0.1.1",
+    "jade": "^1.11.0",
+    "webpack": "^1.12.14"
+  }
+}
