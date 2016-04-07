@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _showDeck = __webpack_require__(1);
 
@@ -54,7 +54,6 @@
 
 	document.addEventListener("DOMContentLoaded", function (event) {
 	  (0, _showDeck2.default)();
-	  document.querySelectorAll('.card').addEventListener('click', getCardInfo, false);
 	});
 
 /***/ },
@@ -75,29 +74,48 @@
 
 	var _score2 = _interopRequireDefault(_score);
 
+	var _getCardInfo = __webpack_require__(7);
+
+	var _getCardInfo2 = _interopRequireDefault(_getCardInfo);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = function () {
+	module.exports = function (callback) {
 	  (0, _getData2.default)('http://192.168.1.2:8000/new', function (data) {
 	    var cards = void 0,
-	        player1Cards = document.querySelector('.player1Cards'),
-	        // selete the player1's cards container
-	    player2Cards = document.querySelector('.player2Cards'); // selete the player2's cards container
-
+	        player1Cards = document.querySelector('#cardContainerP1'); // selete the player1's cards container
+	    // player2Cards= document.querySelector('#cardContainerP2'); // selete the player2's cards container
+	    //console.log( player1Cards.innerHTML='<h1>hello</h1>' )
+	    var allcards = '';
 	    typeof data != 'number' ? cards = data : console.log('error code' + data);
 	    // insert the cards
-	    cards.forEach(function (i, card) {
-	      var cardEle = (0, _card2.default)(card);
-	      player1Cards.appendChild(cardEle);
-	      player2Cards.appendChild((0, _card2.default)({ name: 'pc', rating: i + 1, image: '/' }));
-	    })
+	    cards.forEach(function (card, i) {
+	      card.cardId = Date.now();
+	      allcards += (0, _card2.default)(card);
+
+	      //player1Cards.appendChild( cardEle )
+	      //player2Cards.appendChild( cardTemp( {name: 'pc',rating:i+1, image:'/'} ) )
+	    });
+	    player1Cards.innerHTML = allcards;
 
 	    // insert the score
-	    [(1, 2)].forEach(function (i, score) {
-	      var scoreDiv = document.querySelector('#boutContainerP' + i);
+	    [1, 2].forEach(function (score, i) {
+	      var id = '#boutContainerP' + (i + 1).toString();
+	      console.log(id);
+	      var scoreDiv = document.querySelector(id);
 
-	      scoreDiv.appendChild((0, _score2.default)({ playerId: i, score: 0 }));
+	      scoreDiv.innerHTML = (0, _score2.default)({ playerId: i, score: 0 });
 	    });
+
+	    // bind click event to player's card
+	    var eventCards = document.querySelectorAll('.card');
+	    for (var i = 0; i < eventCards.length; i++) {
+	      eventCards[i].addEventListener('click', _getCardInfo2.default, true);
+	    }
+	    /*    document.querySelectorAll('.card').forEach( (ele) => {
+	          console.log(ele)
+	          ele.addEventListener('click',getCardInfo,true)
+	        });*/
 	  });
 	};
 
@@ -112,7 +130,7 @@
 	var jade_mixins = {};
 	var jade_interp;
 	;var locals_for_with = (locals || {});(function (cardId, image, name, rating) {
-	buf.push("<div" + (jade.attr("id", 'cardP1' + (cardId) + '', true, true)) + " class=\"card\"><h4 class=\"name\">" + (jade.escape((jade_interp = name) == null ? '' : jade_interp)) + "</h4><img" + (jade.attr("src", '' + (image) + '', true, true)) + " class=\"image\"><h6 class=\"rating\">" + (jade.escape((jade_interp = rating) == null ? '' : jade_interp)) + "</h6></div>");}.call(this,"cardId" in locals_for_with?locals_for_with.cardId:typeof cardId!=="undefined"?cardId:undefined,"image" in locals_for_with?locals_for_with.image:typeof image!=="undefined"?image:undefined,"name" in locals_for_with?locals_for_with.name:typeof name!=="undefined"?name:undefined,"rating" in locals_for_with?locals_for_with.rating:typeof rating!=="undefined"?rating:undefined));;return buf.join("");
+	buf.push("<div" + (jade.attr("id", 'cardP1' + (cardId) + '', true, true)) + " class=\"card\"><div class=\"name\">" + (jade.escape((jade_interp = name) == null ? '' : jade_interp)) + "</div><img" + (jade.attr("src", '' + (image) + '', true, true)) + " class=\"image\"><div class=\"rating\">" + (jade.escape((jade_interp = rating) == null ? '' : jade_interp)) + "</div></div>");}.call(this,"cardId" in locals_for_with?locals_for_with.cardId:typeof cardId!=="undefined"?cardId:undefined,"image" in locals_for_with?locals_for_with.image:typeof image!=="undefined"?image:undefined,"name" in locals_for_with?locals_for_with.name:typeof name!=="undefined"?name:undefined,"rating" in locals_for_with?locals_for_with.rating:typeof rating!=="undefined"?rating:undefined));;return buf.join("");
 	}
 
 /***/ },
@@ -406,8 +424,70 @@
 	var jade_mixins = {};
 	var jade_interp;
 	;var locals_for_with = (locals || {});(function (playerId, score) {
-	buf.push("<div" + (jade.attr("id", 'boutScoreP' + (playerId) + '', true, true)) + " class=\"boutScore\">score:" + (jade.escape((jade_interp = score) == null ? '' : jade_interp)) + "</div>");}.call(this,"playerId" in locals_for_with?locals_for_with.playerId:typeof playerId!=="undefined"?playerId:undefined,"score" in locals_for_with?locals_for_with.score:typeof score!=="undefined"?score:undefined));;return buf.join("");
+	buf.push("<div" + (jade.attr("id", 'boutScoreP' + (playerId) + '', true, true)) + " class=\"boutScore\">player" + (jade.escape((jade_interp = playerId) == null ? '' : jade_interp)) + " : " + (jade.escape((jade_interp = score) == null ? '' : jade_interp)) + "</div>");}.call(this,"playerId" in locals_for_with?locals_for_with.playerId:typeof playerId!=="undefined"?playerId:undefined,"score" in locals_for_with?locals_for_with.score:typeof score!=="undefined"?score:undefined));;return buf.join("");
 	}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _postData = __webpack_require__(8);
+
+	var _postData2 = _interopRequireDefault(_postData);
+
+	var _updateScore = __webpack_require__(9);
+
+	var _updateScore2 = _interopRequireDefault(_updateScore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = function (event) {
+	  var card = event.target,
+	      name = card.getElementsByClassName('name')[0].innerHTML,
+	      rating = card.getElementsByClassName('rating')[0].innerHTML,
+	      image = card.getElementsByClassName('image')[0].getAttribute('href');
+
+	  (0, _postData2.default)('http://192.168.1.2:8000/round', { name: name, rating: rating, image: image }, function (data) {
+	    typeof data != 'number' ? (0, _updateScore2.default)(data) : console.log('error code ' + data);
+	  });
+	};
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (url, data, callback) {
+	  var request = new XMLHttpRequest();
+	  request.open('POST', url, true);
+	  request.onload = function () {
+	    if (request.status >= 200 && request.status < 400) {
+	      // Success!
+	      var data = JSON.parse(request.responseText);
+	      callback(data);
+	    } else {
+	      // We reached our target server, but it returned an error
+	      callback(request.status);
+	    }
+	  };
+	  request.send(data);
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (data) {
+	  var player1 = document.querySelector('#boutContainerP1'),
+	      player2 = document.querySelector('#boutContainerP2');
+	  player1.innerHTML = 'player1 : ' + data.p1;
+	  player2.innerHTML = 'player2 : ' + data.p2;
+	};
 
 /***/ }
 /******/ ]);
