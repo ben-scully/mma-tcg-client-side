@@ -12,5 +12,5 @@ module.exports= (url,data,callback) =>{
         callback(request.status)
       }
     };
-    request.send(data);
+    request.send(JSON.stringify(data));
 }
