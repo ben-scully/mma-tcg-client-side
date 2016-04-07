@@ -1,6 +1,6 @@
-import cardTemp from '../../view/card.jade'
+import cardTemp from '../../views/card.jade'
 import getData from '../CRUD/getData'
-import scoreTemp from '../../view/score.jade'
+import scoreTemp from '../../views/score.jade'
 
 module.exports= () =>{
   getData('http://192.168.1.2:8000/new', (data) =>{
