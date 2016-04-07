@@ -83,28 +83,29 @@
 	module.exports = function (callback) {
 	  (0, _getData2.default)('http://192.168.1.2:8000/new', function (data) {
 	    var cards = void 0,
-	        player1Cards = document.querySelector('#cardContainerP1'); // selete the player1's cards container
-	    // player2Cards= document.querySelector('#cardContainerP2'); // selete the player2's cards container
-	    //console.log( player1Cards.innerHTML='<h1>hello</h1>' )
-	    var allcards = '';
-	    typeof data != 'number' ? cards = data : console.log('error code' + data);
+	        p1cards = document.querySelector('#cardContainerP1'),
+	        // selete the player1's cards container
+	    p2cards = document.querySelector('#cardContainerP2'),
+	        allcardsP1 = '',
+	        allcardsP2 = '';
+
+	    typeof data != 'number' ? cards = data : console.log(data);
+
 	    // insert the cards
 	    cards.forEach(function (card, i) {
-	      card.cardId = Date.now();
-	      allcards += (0, _card2.default)(card);
-
-	      //player1Cards.appendChild( cardEle )
-	      //player2Cards.appendChild( cardTemp( {name: 'pc',rating:i+1, image:'/'} ) )
+	      allcardsP1 += (0, _card2.default)(card);
+	      allcardsP2 += "<div class='computerCard'>Computer Card</div>";
 	    });
-	    player1Cards.innerHTML = allcards;
+
+	    p1cards.innerHTML = allcardsP1;
+	    p2cards.innerHTML = allcardsP2;
 
 	    // insert the score
-	    [1, 2].forEach(function (score, i) {
-	      var id = '#boutContainerP' + (i + 1).toString();
-	      console.log(id);
-	      var scoreDiv = document.querySelector(id);
+	    [1, 2].forEach(function (id) {
+	      var divid = '#boutContainerP' + id;
+	      var scoreDiv = document.querySelector(divid);
 
-	      scoreDiv.innerHTML = (0, _score2.default)({ playerId: i, score: 0 });
+	      scoreDiv.innerHTML = (0, _score2.default)({ playerId: id, score: 0 });
 	    });
 
 	    // bind click event to player's card
@@ -112,10 +113,6 @@
 	    for (var i = 0; i < eventCards.length; i++) {
 	      eventCards[i].addEventListener('click', _getCardInfo2.default, true);
 	    }
-	    /*    document.querySelectorAll('.card').forEach( (ele) => {
-	          console.log(ele)
-	          ele.addEventListener('click',getCardInfo,true)
-	        });*/
 	  });
 	};
 
@@ -129,8 +126,8 @@
 	var buf = [];
 	var jade_mixins = {};
 	var jade_interp;
-	;var locals_for_with = (locals || {});(function (cardId, image, name, rating) {
-	buf.push("<div" + (jade.attr("id", 'cardP1' + (cardId) + '', true, true)) + " class=\"card\"><div class=\"name\">" + (jade.escape((jade_interp = name) == null ? '' : jade_interp)) + "</div><img" + (jade.attr("src", '' + (image) + '', true, true)) + " class=\"image\"><div class=\"rating\">" + (jade.escape((jade_interp = rating) == null ? '' : jade_interp)) + "</div></div>");}.call(this,"cardId" in locals_for_with?locals_for_with.cardId:typeof cardId!=="undefined"?cardId:undefined,"image" in locals_for_with?locals_for_with.image:typeof image!=="undefined"?image:undefined,"name" in locals_for_with?locals_for_with.name:typeof name!=="undefined"?name:undefined,"rating" in locals_for_with?locals_for_with.rating:typeof rating!=="undefined"?rating:undefined));;return buf.join("");
+	;var locals_for_with = (locals || {});(function (image, name, rating) {
+	buf.push("<div class=\"card\"><div class=\"name\">" + (jade.escape((jade_interp = name) == null ? '' : jade_interp)) + "</div><img" + (jade.attr("src", '' + (image) + '', true, true)) + " class=\"image\"><div class=\"rating\">" + (jade.escape((jade_interp = rating) == null ? '' : jade_interp)) + "</div></div>");}.call(this,"image" in locals_for_with?locals_for_with.image:typeof image!=="undefined"?image:undefined,"name" in locals_for_with?locals_for_with.name:typeof name!=="undefined"?name:undefined,"rating" in locals_for_with?locals_for_with.rating:typeof rating!=="undefined"?rating:undefined));;return buf.join("");
 	}
 
 /***/ },
@@ -483,8 +480,8 @@
 	'use strict';
 
 	module.exports = function (data) {
-	  var player1 = document.querySelector('#boutContainerP1'),
-	      player2 = document.querySelector('#boutContainerP2');
+	  var player1 = document.querySelector('#boutScoreP1'),
+	      player2 = document.querySelector('#boutScoreP2');
 	  player1.innerHTML = 'player1 : ' + data.p1;
 	  player2.innerHTML = 'player2 : ' + data.p2;
 	};
