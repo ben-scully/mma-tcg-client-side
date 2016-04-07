@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _showDeck = __webpack_require__(1);
 
@@ -54,6 +54,11 @@
 
 	document.addEventListener("DOMContentLoaded", function (event) {
 	  (0, _showDeck2.default)();
+
+	  var btns = document.querySelector('.newGame');
+	  for (var i = 0; i < btns.length; i++) {
+	    btns[i].addEventListener('click', _showDeck2.default, true);
+	  }
 	});
 
 /***/ },
@@ -62,57 +67,29 @@
 
 	'use strict';
 
-	var _card = __webpack_require__(2);
-
-	var _card2 = _interopRequireDefault(_card);
-
 	var _getData = __webpack_require__(5);
 
 	var _getData2 = _interopRequireDefault(_getData);
 
-	var _score = __webpack_require__(6);
+	var _generateCards = __webpack_require__(13);
 
-	var _score2 = _interopRequireDefault(_score);
+	var _generateCards2 = _interopRequireDefault(_generateCards);
 
-	var _getCardInfo = __webpack_require__(7);
+	var _generateScore = __webpack_require__(8);
 
-	var _getCardInfo2 = _interopRequireDefault(_getCardInfo);
+	var _generateScore2 = _interopRequireDefault(_generateScore);
+
+	var _bindClickToCards = __webpack_require__(14);
+
+	var _bindClickToCards2 = _interopRequireDefault(_bindClickToCards);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = function (callback) {
-	  (0, _getData2.default)('http://192.168.1.2:8000/new', function (data) {
-	    var cards = void 0,
-	        p1cards = document.querySelector('#cardContainerP1'),
-	        // selete the player1's cards container
-	    p2cards = document.querySelector('#cardContainerP2'),
-	        allcardsP1 = '',
-	        allcardsP2 = '';
-
-	    typeof data != 'number' ? cards = data : console.log(data);
-
-	    // insert the cards
-	    cards.forEach(function (card, i) {
-	      allcardsP1 += (0, _card2.default)(card);
-	      allcardsP2 += "<div class='computerCard'>Computer Card</div>";
-	    });
-
-	    p1cards.innerHTML = allcardsP1;
-	    p2cards.innerHTML = allcardsP2;
-
-	    // insert the score
-	    [1, 2].forEach(function (id) {
-	      var divid = '#boutContainerP' + id;
-	      var scoreDiv = document.querySelector(divid);
-
-	      scoreDiv.innerHTML = (0, _score2.default)({ playerId: id, score: 0 });
-	    });
-
-	    // bind click event to player's card
-	    var eventCards = document.querySelectorAll('.card');
-	    for (var i = 0; i < eventCards.length; i++) {
-	      eventCards[i].addEventListener('click', _getCardInfo2.default, true);
-	    }
+	  (0, _getData2.default)('http://localhost:8000/new', function (data) {
+	    typeof data != 'number' ? (0, _generateCards2.default)(data) : console.log(data);
+	    (0, _generateScore2.default)();
+	    (0, _bindClickToCards2.default)();
 	  });
 	};
 
@@ -425,16 +402,39 @@
 	}
 
 /***/ },
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _postData = __webpack_require__(8);
+	var _score = __webpack_require__(6);
+
+	var _score2 = _interopRequireDefault(_score);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = function () {
+	      [1, 2].forEach(function (id) {
+	            var divid = '#boutContainerP' + id;
+	            var scoreDiv = document.querySelector(divid);
+
+	            scoreDiv.innerHTML = (0, _score2.default)({ playerId: id, score: 0 });
+	      });
+	};
+
+/***/ },
+/* 9 */,
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _postData = __webpack_require__(11);
 
 	var _postData2 = _interopRequireDefault(_postData);
 
-	var _updateScore = __webpack_require__(9);
+	var _updateScore = __webpack_require__(12);
 
 	var _updateScore2 = _interopRequireDefault(_updateScore);
 
@@ -446,13 +446,13 @@
 	      rating = card.getElementsByClassName('rating')[0].innerHTML,
 	      image = card.getElementsByClassName('image')[0].getAttribute('href');
 
-	  (0, _postData2.default)('http://192.168.1.2:8000/round', { name: name, rating: rating, image: image }, function (data) {
+	  (0, _postData2.default)('http://localhost:8000/round', { name: name, rating: rating, image: image }, function (data) {
 	    typeof data != 'number' ? (0, _updateScore2.default)(data) : console.log('error code ' + data);
 	  });
 	};
 
 /***/ },
-/* 8 */
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -474,7 +474,7 @@
 	};
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -484,6 +484,54 @@
 	      player2 = document.querySelector('#boutScoreP2');
 	  player1.innerHTML = 'player1 : ' + data.p1;
 	  player2.innerHTML = 'player2 : ' + data.p2;
+	};
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _card = __webpack_require__(2);
+
+	var _card2 = _interopRequireDefault(_card);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = function (cards) {
+	    var p1cards = document.querySelector('#cardContainerP1'),
+	        // selete the player1's cards container
+	    p2cards = document.querySelector('#cardContainerP2'),
+	        allcardsP1 = '',
+	        allcardsP2 = '';
+
+	    cards.forEach(function (card, i) {
+	        allcardsP1 += (0, _card2.default)(card);
+	        allcardsP2 += "<div class='computerCard'>Computer Card</div>";
+	    });
+
+	    p1cards.innerHTML = allcardsP1;
+	    p2cards.innerHTML = allcardsP2;
+	};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _getCardInfo = __webpack_require__(10);
+
+	var _getCardInfo2 = _interopRequireDefault(_getCardInfo);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = function () {
+	    // bind click event to player's card
+	    var eventCards = document.querySelectorAll('.card');
+	    for (var i = 0; i < eventCards.length; i++) {
+	        eventCards[i].addEventListener('click', _getCardInfo2.default, true);
+	    }
 	};
 
 /***/ }
