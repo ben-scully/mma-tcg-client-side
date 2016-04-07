@@ -1,0 +1,44 @@
+#globalWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#boutContainerP2 {
+  float: right;
+}
+
+.boutContainer {
+  height: 50px;
+  width: 50px;
+  background: green;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.boutScore {
+  height: 40px;
+  width: 40px;
+  background: yellow;
+}
+
+.cardContainer {
+  height: 100px;
+  width: 600px;
+  background: purple;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card {
+  width: 20px;
+  height: 30px;
+  background: blue;
+  display: flex;
+  justify-content: center;
+}
+
+.name, .image, .rating {
+
+}
