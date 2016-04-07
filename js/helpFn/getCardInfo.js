@@ -3,10 +3,10 @@ import updateScore from './updateScore'
 
 module.exports=(event) => {
   let card= event.target,
-      name= card.querySelector('.name').innerHTML,
-      id= card.querySelector('.id').innerHTML,
+      name= card.querySelector('h4').innerHTML,
+      rating= card.querySelector('h6').innerHTML,
       image= card.querySelector('img').getAttribute('href');
-      postData( {name,id,image} , (data) =>{
+      postData('http://192.168.1.2:8000/round', {name,rating,image} , (data) =>{
         typeof(data) != 'number'? updateScore(data) : console.log('error code '+ data);
       })
 }

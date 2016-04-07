@@ -1,6 +1,7 @@
-import getData from './CRUD/getData'
+import showDeck from './helpFn/showDeck'
 
 
-document.querySelectorAll('.card').addEventListener('click',getCardInfo,false);
-
-
+document.addEventListener("DOMContentLoaded", function(event) {
+  showDeck();
+  document.querySelectorAll('.card').addEventListener('click',getCardInfo,false);
+});
