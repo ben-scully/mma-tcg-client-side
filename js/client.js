@@ -404,7 +404,7 @@
 	var jade_mixins = {};
 	var jade_interp;
 	;var locals_for_with = (locals || {});(function (playerId, score) {
-	buf.push("<div" + (jade.attr("id", 'boutScoreP' + (playerId) + '', true, true)) + " class=\"boutScore\">player" + (jade.escape((jade_interp = playerId) == null ? '' : jade_interp)) + " : " + (jade.escape((jade_interp = score) == null ? '' : jade_interp)) + "</div>");}.call(this,"playerId" in locals_for_with?locals_for_with.playerId:typeof playerId!=="undefined"?playerId:undefined,"score" in locals_for_with?locals_for_with.score:typeof score!=="undefined"?score:undefined));;return buf.join("");
+	buf.push("<div" + (jade.attr("id", 'boutScoreP' + (playerId) + '', true, true)) + " class=\"boutScore\"><div class=\"boutName\">Player" + (jade.escape((jade_interp = playerId) == null ? '' : jade_interp)) + ":</div><div class=\"boutNumber\">" + (jade.escape((jade_interp = score) == null ? '' : jade_interp)) + "</div></div>");}.call(this,"playerId" in locals_for_with?locals_for_with.playerId:typeof playerId!=="undefined"?playerId:undefined,"score" in locals_for_with?locals_for_with.score:typeof score!=="undefined"?score:undefined));;return buf.join("");
 	}
 
 /***/ },
@@ -504,8 +504,8 @@
 	module.exports = function (data) {
 	  var player1 = document.querySelector('#boutScoreP1'),
 	      player2 = document.querySelector('#boutScoreP2');
-	  player1.innerHTML = 'player1 : ' + data.p1;
-	  player2.innerHTML = 'player2 : ' + data.p2;
+	  player1.querySelector('.boutNumber').innerHTML = data.p1;
+	  player2.querySelector('.boutNumber').innerHTML = data.p2;
 	};
 
 /***/ },
