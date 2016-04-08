@@ -96,20 +96,7 @@
 	};
 
 /***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var jade = __webpack_require__(3);
-
-	module.exports = function template(locals) {
-	var buf = [];
-	var jade_mixins = {};
-	var jade_interp;
-	;var locals_for_with = (locals || {});(function (image, name, rating) {
-	buf.push("<div class=\"card\"><div class=\"name\">" + (jade.escape((jade_interp = name) == null ? '' : jade_interp)) + "</div><img" + (jade.attr("src", '' + (image) + '', true, true)) + " class=\"image\"><h2 class=\"rating\">" + (jade.escape((jade_interp = rating) == null ? '' : jade_interp)) + "</h2></div>");}.call(this,"image" in locals_for_with?locals_for_with.image:typeof image!=="undefined"?image:undefined,"name" in locals_for_with?locals_for_with.name:typeof name!=="undefined"?name:undefined,"rating" in locals_for_with?locals_for_with.rating:typeof rating!=="undefined"?rating:undefined));;return buf.join("");
-	}
-
-/***/ },
+/* 2 */,
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -511,7 +498,7 @@
 
 	'use strict';
 
-	var _card = __webpack_require__(2);
+	var _card = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../views/card.jade\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _card2 = _interopRequireDefault(_card);
 
