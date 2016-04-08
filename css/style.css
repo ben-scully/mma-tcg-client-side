@@ -42,14 +42,17 @@
 *   Ring is the center of whole game
 */
 #ring {
-  background: red;
   display: flex;
   justify-content: space-between;
+
+  margin-top: 8px;
 }
+
+
 
 #mat img {
   width: 400px;
-  height: 120px;
+  height: 140px;
 }
 
 
@@ -57,15 +60,14 @@
 *   Bout is each players score is displayed
 */
 .boutContainer {
-  background: green;
   height: 150px;
-  width: 150px;
+  width: 140px;
 
   display: flex;
   flex-direction: column;
 }
 
-#boutContainerP2 {
+#boutContainerP1 {
   justify-content: flex-end;
 }
 
@@ -88,6 +90,7 @@
 
 .boutScore.boutNumber {
   text-align: center;
+  font-size: 70px;
 }
 
 
@@ -178,10 +181,24 @@
 }
 
 
-
 /*
 *   Header is the game title at the top of the screen
 */
 header {
   font-size: 40px;
+}
+
+#result-container {
+  background: green;
+  height: 400px;
+  width: 400px;
+}
+
+.resultPlayer,
+.resultMessage {
+  font-size: 30px;
+}
+
+.resultNewGame {
+
 }
