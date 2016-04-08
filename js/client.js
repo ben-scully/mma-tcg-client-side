@@ -88,7 +88,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = function (callback) {
-	  //document.querySelector('.game').className+=' Show'
+	  document.querySelector('.game').className += ' showGame';
 	  var result = document.querySelector('#results-container');
 	  result ? result.className = '' : console.log('new game');
 	  document.querySelector('.newGame').className = 'newGame hidden'; // hide the new game button
