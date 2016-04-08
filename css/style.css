@@ -75,8 +75,20 @@
   background-image: url("http://negativesum.net/games/newsfolder/scrolls-scrolls-scrolls-scrolls-scrolls/image");
   background-size: 120px 100px;
   background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+.boutScore.boutName {
+  text-align: center;
+}
+
+.boutScore.boutNumber {
+  text-align: center;
+}
 
 
 /*
