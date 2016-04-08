@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _showDeck = __webpack_require__(1);
 
@@ -55,10 +55,10 @@
 	document.addEventListener("DOMContentLoaded", function (event) {
 	  (0, _showDeck2.default)();
 
-	  var btns = document.querySelector('.newGame');
-	  for (var i = 0; i < btns.length; i++) {
-	    btns[i].addEventListener('click', _showDeck2.default, true);
-	  }
+	  /*  let btns=document.querySelector('.newGame')
+	    for(let i=0;i<btns.length;i++){
+	      btns[i].addEventListener('click',showDeck,true)
+	    }*/
 	});
 
 /***/ },
@@ -86,7 +86,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = function (callback) {
-	  (0, _getData2.default)('http://localhost:8000/new', function (data) {
+	  (0, _getData2.default)('http://192.168.1.2:8000/new', function (data) {
 	    typeof data != 'number' ? (0, _generateCards2.default)(data) : console.log(data);
 	    (0, _generateScore2.default)();
 	    (0, _bindClickToCards2.default)();
@@ -446,7 +446,7 @@
 	      rating = card.getElementsByClassName('rating')[0].innerHTML,
 	      image = card.getElementsByClassName('image')[0].getAttribute('href');
 
-	  (0, _postData2.default)('http://localhost:8000/round', { name: name, rating: rating, image: image }, function (data) {
+	  (0, _postData2.default)('http://192.168.1.2:8000/round', { name: name, rating: rating, image: image }, function (data) {
 	    typeof data != 'number' ? (0, _updateScore2.default)(data) : console.log('error code ' + data);
 	  });
 	};
@@ -457,7 +457,7 @@
 
 	'use strict';
 
-	module.exports = function (url, data, callback) {
+	module.exports = function (url, card, callback) {
 	  var request = new XMLHttpRequest();
 	  request.open('POST', url, true);
 	  request.onload = function () {
@@ -470,7 +470,7 @@
 	      callback(request.status);
 	    }
 	  };
-	  request.send(JSON.stringify(data));
+	  request.send(JSON.stringify(card));
 	};
 
 /***/ },

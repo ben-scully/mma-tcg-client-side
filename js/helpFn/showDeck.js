@@ -4,7 +4,7 @@ import generateScores from './generateScore'
 import bindClickToCards from './bindClickToCards'
 
 module.exports= (callback) =>{
-  getData('http://localhost:8000/new', (data) =>{
+  getData('http://192.168.1.2:8000/new', (data) =>{
     typeof(data) != 'number'? generateCards(data) : console.log(data) ;
     generateScores()
     bindClickToCards()

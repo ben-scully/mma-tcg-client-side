@@ -1,5 +1,5 @@
 
-module.exports= (url,data,callback) =>{
+module.exports= (url,card,callback) =>{
     var request = new XMLHttpRequest();
     request.open('POST', url, true);
     request.onload = function() {
@@ -12,5 +12,5 @@ module.exports= (url,data,callback) =>{
         callback(request.status)
       }
     };
-    request.send(JSON.stringify(data));
+    request.send(JSON.stringify(card));
 }
