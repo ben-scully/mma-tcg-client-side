@@ -4,9 +4,10 @@ import generateScores from './generateScore'
 import bindClickToCards from './bindClickToCards'
 
 module.exports= (callback) =>{
+  console.log('i am showing')
   document.querySelector('.game').className+=' showGame'
   let result =document.querySelector('#results-container')
-  result? result.className='' : console.log('new game') ;
+  result ? result.className='' : console.log('new game') ;
   document.querySelector('.newGame').className='newGame hidden'; // hide the new game button
   getData('http://localhost:8000/new', (data) =>{
     typeof(data) != 'number'? generateCards(data) : console.log(data) ;

@@ -88,6 +88,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = function (callback) {
+	  console.log('i am showing');
 	  document.querySelector('.game').className += ' showGame';
 	  var result = document.querySelector('#results-container');
 	  result ? result.className = '' : console.log('new game');
@@ -585,6 +586,10 @@
 
 	var _unlisten2 = _interopRequireDefault(_unlisten);
 
+	var _showDeck = __webpack_require__(1);
+
+	var _showDeck2 = _interopRequireDefault(_showDeck);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = function (p1Score, p2Score, winner) {
@@ -592,6 +597,7 @@
 	  resultDiv.innerHTML = (0, _result2.default)({ p1Score: p1Score, p2Score: p2Score, winner: winner });
 	  resultDiv.id = 'results-container';
 	  resultDiv.className += 'result showResult';
+	  resultDiv.querySelector('.newGame2').addEventListener('click', _showDeck2.default, true);
 	  document.body.appendChild(resultDiv);
 	  (0, _unlisten2.default)();
 	};
@@ -607,7 +613,7 @@
 	var jade_mixins = {};
 	var jade_interp;
 	;var locals_for_with = (locals || {});(function (p1Score, p2Score, winner) {
-	buf.push("<p class=\"result showResult player1\">Player 1 score: " + (jade.escape((jade_interp = p1Score) == null ? '' : jade_interp)) + "</p><p class=\"result showResult player2\">Player 2 score: " + (jade.escape((jade_interp = p2Score) == null ? '' : jade_interp)) + "</p><p class=\"result showResult message\">Player" + (jade.escape((jade_interp = winner) == null ? '' : jade_interp)) + " wins!</p>");}.call(this,"p1Score" in locals_for_with?locals_for_with.p1Score:typeof p1Score!=="undefined"?p1Score:undefined,"p2Score" in locals_for_with?locals_for_with.p2Score:typeof p2Score!=="undefined"?p2Score:undefined,"winner" in locals_for_with?locals_for_with.winner:typeof winner!=="undefined"?winner:undefined));;return buf.join("");
+	buf.push("<p class=\"result showResult player1\">Player 1 score: " + (jade.escape((jade_interp = p1Score) == null ? '' : jade_interp)) + "</p><p class=\"result showResult player2\">Player 2 score: " + (jade.escape((jade_interp = p2Score) == null ? '' : jade_interp)) + "</p><p class=\"result showResult message\">Player" + (jade.escape((jade_interp = winner) == null ? '' : jade_interp)) + " wins!</p><button class=\"newGame2\">NEW GAME</button>");}.call(this,"p1Score" in locals_for_with?locals_for_with.p1Score:typeof p1Score!=="undefined"?p1Score:undefined,"p2Score" in locals_for_with?locals_for_with.p2Score:typeof p2Score!=="undefined"?p2Score:undefined,"winner" in locals_for_with?locals_for_with.winner:typeof winner!=="undefined"?winner:undefined));;return buf.join("");
 	}
 
 /***/ },
