@@ -11,16 +11,15 @@
     "server_path" : "selenium-server-standalone-2.53.0.jar",
     "log_path" : "",
     "host" : "127.0.0.1",
-    "port" : 8000,
+    "port" : 8008,
     "cli_args" : {
-      "webdriver.chrome.driver" : "",
-      "webdriver.ie.driver" : ""
+      "webdriver.chrome.driver" : ""
     }
   },
   "test_settings" : {
     "default" : {
       "launch_url" : "http://localhost",
-      "selenium_port"  : 8000,
+      "selenium_port"  : 8008,
       "selenium_host"  : "localhost",
       "silent": true,
       "screenshots" : {

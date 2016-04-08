@@ -1,0 +1,41 @@
+14:37:38.166 INFO - Launching a standalone Selenium Server
+14:37:38.193 INFO - Java: Oracle Corporation 25.51-b03
+14:37:38.193 INFO - OS: Mac OS X 10.11.3 x86_64
+14:37:38.202 INFO - v2.53.0, with Core v2.53.0. Built from revision 35ae25b
+14:37:38.251 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
+14:37:38.252 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
+14:37:38.252 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+14:37:38.252 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+14:37:38.253 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver
+14:37:38.253 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered
+14:37:38.297 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:8008/wd/hub
+14:37:38.297 INFO - Selenium Server is up and running
+14:37:38.487 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Google Test, browserName=firefox, javascriptEnabled=true, platform=ANY}]])
+14:37:38.494 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Google Test, browserName=firefox, javascriptEnabled=true, platform=ANY}]
+14:37:40.344 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Google Test, browserName=firefox, javascriptEnabled=true, platform=ANY}]]
+14:37:40.354 INFO - Executing: [get: http://www.google.com])
+14:37:42.251 INFO - Done: [get: http://www.google.com]
+14:37:42.260 INFO - Executing: [find elements: By.cssSelector: body])
+14:37:42.513 INFO - Done: [find elements: By.cssSelector: body]
+14:37:42.516 INFO - Executing: [is displayed: 0 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: body]])
+14:37:42.524 INFO - Done: [is displayed: 0 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: body]]
+14:37:42.529 INFO - Executing: [find element: By.cssSelector: input[type=text]])
+14:37:42.534 INFO - Done: [find element: By.cssSelector: input[type=text]]
+14:37:42.537 INFO - Executing: [send keys: 1 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: input[type=text]], [n, i, g, h, t, w, a, t, c, h]])
+14:37:42.616 INFO - Done: [send keys: 1 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: input[type=text]], [n, i, g, h, t, w, a, t, c, h]]
+14:37:42.624 INFO - Executing: [find elements: By.cssSelector: button[name=btnG]])
+14:37:42.630 INFO - Done: [find elements: By.cssSelector: button[name=btnG]]
+14:37:42.633 INFO - Executing: [is displayed: 2 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: button[name=btnG]]])
+14:37:42.642 INFO - Done: [is displayed: 2 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: button[name=btnG]]]
+14:37:42.646 INFO - Executing: [find element: By.cssSelector: button[name=btnG]])
+14:37:42.651 INFO - Done: [find element: By.cssSelector: button[name=btnG]]
+14:37:42.654 INFO - Executing: [click: 2 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: button[name=btnG]]])
+14:37:42.722 INFO - Done: [click: 2 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: button[name=btnG]]]
+14:37:43.729 INFO - Executing: [find element: By.cssSelector: #main])
+14:37:43.957 INFO - Done: [find element: By.cssSelector: #main]
+14:37:43.960 INFO - Executing: [get text: 3 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: #main]])
+14:37:45.903 INFO - Done: [get text: 3 [[FirefoxDriver: firefox on MAC (54ebb5b6-4f5e-1d47-b150-243f77f79726)] -> css selector: #main]]
+14:37:45.909 INFO - Executing: [delete session: e48ee2bd-5b2a-44b4-83cf-ae567e0a7b8d])
+14:37:45.991 INFO - Done: [delete session: e48ee2bd-5b2a-44b4-83cf-ae567e0a7b8d]
