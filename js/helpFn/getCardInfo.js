@@ -4,8 +4,13 @@ import calcWinner from './calculateWinner'
 import showResult from './showResult'
 
 module.exports=(event) => {
-  let card= event.target,
-      name= card.getElementsByClassName('name')[0].innerHTML,
+  let card= event.target;
+  if(card.tagName == 'IMG' || card.tagName == 'H2'){
+    card = card.parentNode
+    console.log('card',card)
+  }
+  console.log(card.parentNode);
+  let name= card.getElementsByClassName('name')[0].innerHTML,
       rating= card.getElementsByClassName('rating')[0].innerHTML,
       image= card.getElementsByClassName('image')[0].getAttribute('href');
 

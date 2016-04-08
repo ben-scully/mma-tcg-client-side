@@ -86,6 +86,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = function (callback) {
+	  //document.querySelector('#results-container').className='';  // hide the result div
+	  //document.querySelector('.newGame').className='newGame hidden'; // hide the new game button
 	  (0, _getData2.default)('http://192.168.1.2:8000/new', function (data) {
 	    typeof data != 'number' ? (0, _generateCards2.default)(data) : console.log(data);
 	    (0, _generateScore2.default)();
@@ -104,7 +106,7 @@
 	var jade_mixins = {};
 	var jade_interp;
 	;var locals_for_with = (locals || {});(function (image, name, rating) {
-	buf.push("<div class=\"card\"><div class=\"name\">" + (jade.escape((jade_interp = name) == null ? '' : jade_interp)) + "</div><img" + (jade.attr("src", '' + (image) + '', true, true)) + " class=\"image\"><div class=\"rating\">" + (jade.escape((jade_interp = rating) == null ? '' : jade_interp)) + "</div></div>");}.call(this,"image" in locals_for_with?locals_for_with.image:typeof image!=="undefined"?image:undefined,"name" in locals_for_with?locals_for_with.name:typeof name!=="undefined"?name:undefined,"rating" in locals_for_with?locals_for_with.rating:typeof rating!=="undefined"?rating:undefined));;return buf.join("");
+	buf.push("<div class=\"card\"><div class=\"name\">" + (jade.escape((jade_interp = name) == null ? '' : jade_interp)) + "</div><img" + (jade.attr("src", '' + (image) + '', true, true)) + " class=\"image\"><h2 class=\"rating\">" + (jade.escape((jade_interp = rating) == null ? '' : jade_interp)) + "</h2></div>");}.call(this,"image" in locals_for_with?locals_for_with.image:typeof image!=="undefined"?image:undefined,"name" in locals_for_with?locals_for_with.name:typeof name!=="undefined"?name:undefined,"rating" in locals_for_with?locals_for_with.rating:typeof rating!=="undefined"?rating:undefined));;return buf.join("");
 	}
 
 /***/ },
@@ -449,8 +451,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = function (event) {
-	  var card = event.target,
-	      name = card.getElementsByClassName('name')[0].innerHTML,
+	  var card = event.target;
+	  if (card.tagName == 'IMG' || card.tagName == 'H2') {
+	    card = card.parentNode;
+	    console.log('card', card);
+	  }
+	  console.log(card.parentNode);
+	  var name = card.getElementsByClassName('name')[0].innerHTML,
 	      rating = card.getElementsByClassName('rating')[0].innerHTML,
 	      image = card.getElementsByClassName('image')[0].getAttribute('href');
 
@@ -542,7 +549,7 @@
 	    // bind click event to player's card
 	    var eventCards = document.querySelectorAll('.card');
 	    for (var i = 0; i < eventCards.length; i++) {
-	        eventCards[i].addEventListener('click', _getCardInfo2.default, true);
+	        eventCards[i].addEventListener('click', _getCardInfo2.default);
 	    }
 	};
 
