@@ -438,6 +438,14 @@
 
 	var _updateScore2 = _interopRequireDefault(_updateScore);
 
+	var _calculateWinner = __webpack_require__(15);
+
+	var _calculateWinner2 = _interopRequireDefault(_calculateWinner);
+
+	var _showResult = __webpack_require__(16);
+
+	var _showResult2 = _interopRequireDefault(_showResult);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = function (event) {
@@ -447,7 +455,11 @@
 	      image = card.getElementsByClassName('image')[0].getAttribute('href');
 
 	  (0, _postData2.default)('http://192.168.1.2:8000/round', { name: name, rating: rating, image: image }, function (data) {
-	    typeof data != 'number' ? (0, _updateScore2.default)(data) : console.log('error code ' + data);
+	    var numCards = document.querySelectorAll('.card').length;
+	    if (typeof data != 'number') {
+	      var winner = (0, _calculateWinner2.default)(numCards, data.p1, data.p2);
+	      !winner ? (0, _updateScore2.default)(data) : (0, _showResult2.default)(data.p1, data.p2, winner);
+	    } else console.log('error code ' + data);
 	  });
 	};
 
@@ -533,6 +545,50 @@
 	        eventCards[i].addEventListener('click', _getCardInfo2.default, true);
 	    }
 	};
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = function (numCards, p1Score, p2Score) {
+	  var winCondition = Math.floor(numCards / 2 + 1);
+	  if (p1Score < winCondition && p2Score < winCondition) return false;else return p1Score > p2Score ? 1 : 2;
+	};
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _result = __webpack_require__(17);
+
+	var _result2 = _interopRequireDefault(_result);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = function (p1Score, p2Score, winner) {
+	  var resultDiv = document.createElement('div');
+	  resultDiv.innerHTML = (0, _result2.default)({ p1Score: p1Score, p2Score: p2Score, winner: winner });
+	  resultDiv.className += 'showResult';
+	  document.body.appendChild(resultDiv);
+	};
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var jade = __webpack_require__(3);
+
+	module.exports = function template(locals) {
+	var buf = [];
+	var jade_mixins = {};
+	var jade_interp;
+	;var locals_for_with = (locals || {});(function (player1Score, player2Score, winnerId) {
+	buf.push("<div id=\"results-container\"><p class=\"result player1\">Player 1 score: " + (jade.escape((jade_interp = player1Score) == null ? '' : jade_interp)) + "</p><p class=\"result player2\">Player 2 score: " + (jade.escape((jade_interp = player2Score) == null ? '' : jade_interp)) + "</p><p class=\"result message\">Player" + (jade.escape((jade_interp = winnerId) == null ? '' : jade_interp)) + " wins!</p></div>");}.call(this,"player1Score" in locals_for_with?locals_for_with.player1Score:typeof player1Score!=="undefined"?player1Score:undefined,"player2Score" in locals_for_with?locals_for_with.player2Score:typeof player2Score!=="undefined"?player2Score:undefined,"winnerId" in locals_for_with?locals_for_with.winnerId:typeof winnerId!=="undefined"?winnerId:undefined));;return buf.join("");
+	}
 
 /***/ }
 /******/ ]);
