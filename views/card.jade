@@ -1,4 +1,6 @@
 .card
+  img.cardTemplate(src= "http://orig08.deviantart.net/a4af/f/2015/017/1/2/neutral_legendary_monster_empty_card_by_demaretc-d8ea24s.png")
   .name #{name}
-  img.image(src= '#{image}')
+  .imageContainer
+    img.image(src= #{image}, alt= #{name})
   .rating #{rating}
