@@ -7,21 +7,55 @@
   justify-content: center;
 }
 
-header {
-  font-size: 40px;
-}
-
-#gameWrapper {
+#buttonResultGameWrapper {
   display: flex;
   flex-direction: column;
 }
 
+.newGame {
+  display: block;
+  margin-top: 50px;
+}
+
+.newGame.hidden {
+  display: none;
+}
+
+.result {
+  display: none;
+}
+
+.result.showResult {
+  display: block;
+}
+
+.game {
+  display: none;
+}
+
+.game.showGame {
+  display: block;
+}
+
+
+/*
+*   Ring is the center of whole game
+*/
 #ring {
   background: red;
   display: flex;
   justify-content: space-between;
 }
 
+#mat img {
+  width: 400px;
+  height: 120px;
+}
+
+
+/*
+*   Bout is each players score is displayed
+*/
 .boutContainer {
   background: green;
   height: 150px;
@@ -37,19 +71,30 @@ header {
 
 .boutScore {
   height: 100px;
-  width: 100px;
-  background: yellow;
+  width: 120px;
+  background-image: url("http://negativesum.net/games/newsfolder/scrolls-scrolls-scrolls-scrolls-scrolls/image");
+  background-size: 120px 100px;
+  background-repeat: no-repeat;
 }
 
+
+
+/*
+*   Card Container is where each players cards are displayed
+*/
 .cardContainer {
   height: 200px;
   width: 800px;
-  background: purple;
+  background: grey;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
+
+/*
+*   Card is the styling for one individual card
+*/
 .card {
   color: white;
 
@@ -57,8 +102,8 @@ header {
   height: 160px;
   width: 120px;
 
-  min-width: 120px;
-  min-height: 180px;
+  min-height: 120px;
+  min-width: 90px;
 
   position: relative;
 }
@@ -120,18 +165,11 @@ header {
   height: 100px;
 }
 
-.newGame {
-  display: block;
-}
 
-.newGame.hidden {
-  display: none;
-}
 
-.result {
-  display: none;
-}
-
-.result.showResult {
-  display: block;
+/*
+*   Header is the game title at the top of the screen
+*/
+header {
+  font-size: 40px;
 }
