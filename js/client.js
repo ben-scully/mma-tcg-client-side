@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _showDeck = __webpack_require__(1);
 
@@ -53,11 +53,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	document.addEventListener("DOMContentLoaded", function (event) {
-	  (0, _showDeck2.default)();
+	  //showDeck()
 
-	  /*  let btns=document.querySelector('.newGame')
+	  var btns = document.querySelector('.newGame');
+	  btns.addEventListener('click', _showDeck2.default, true);
+	  /*  console.log(btns)
 	    for(let i=0;i<btns.length;i++){
-	      btns[i].addEventListener('click',showDeck,true)
+	      btns[i]
 	    }*/
 	});
 
@@ -88,7 +90,7 @@
 	module.exports = function (callback) {
 	  //document.querySelector('#results-container').className='';  // hide the result div
 	  //document.querySelector('.newGame').className='newGame hidden'; // hide the new game button
-	  (0, _getData2.default)('http://192.168.1.2:8000/new', function (data) {
+	  (0, _getData2.default)('http://localhost:8000/new', function (data) {
 	    typeof data != 'number' ? (0, _generateCards2.default)(data) : console.log(data);
 	    (0, _generateScore2.default)();
 	    (0, _bindClickToCards2.default)();
@@ -96,7 +98,20 @@
 	};
 
 /***/ },
-/* 2 */,
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var jade = __webpack_require__(3);
+
+	module.exports = function template(locals) {
+	var buf = [];
+	var jade_mixins = {};
+	var jade_interp;
+	;var locals_for_with = (locals || {});(function (image, name, rating) {
+	buf.push("<div class=\"card\"><img src=\"http://orig08.deviantart.net/a4af/f/2015/017/1/2/neutral_legendary_monster_empty_card_by_demaretc-d8ea24s.png\" class=\"cardTemplate\"><div class=\"name\">" + (jade.escape((jade_interp = name) == null ? '' : jade_interp)) + "</div><div class=\"imageContainer\"><img" + (jade.attr("src", '' + (image) + '', true, true)) + (jade.attr("alt", '' + (name) + '', true, true)) + " class=\"image\"></div><div class=\"rating\">" + (jade.escape((jade_interp = rating) == null ? '' : jade_interp)) + "</div></div>");}.call(this,"image" in locals_for_with?locals_for_with.image:typeof image!=="undefined"?image:undefined,"name" in locals_for_with?locals_for_with.name:typeof name!=="undefined"?name:undefined,"rating" in locals_for_with?locals_for_with.rating:typeof rating!=="undefined"?rating:undefined));;return buf.join("");
+	}
+
+/***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -439,16 +454,14 @@
 
 	module.exports = function (event) {
 	  var card = event.target;
-	  if (card.tagName == 'IMG' || card.tagName == 'H2') {
+	  if (card.className == 'name' || card.className == 'rating' || card.className == 'cardTemplate' || card.className == 'imageContainer') {
 	    card = card.parentNode;
-	    console.log('card', card);
 	  }
-	  console.log(card.parentNode);
 	  var name = card.getElementsByClassName('name')[0].innerHTML,
 	      rating = card.getElementsByClassName('rating')[0].innerHTML,
 	      image = card.getElementsByClassName('image')[0].getAttribute('href');
 
-	  (0, _postData2.default)('http://192.168.1.2:8000/round', { name: name, rating: rating, image: image }, function (data) {
+	  (0, _postData2.default)('http://localhost:8000/round', { name: name, rating: rating, image: image }, function (data) {
 	    var numCards = document.querySelectorAll('.card').length;
 	    if (typeof data != 'number') {
 	      var winner = (0, _calculateWinner2.default)(numCards, data.p1, data.p2);
@@ -498,9 +511,13 @@
 
 	'use strict';
 
-	var _card = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../views/card.jade\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _card = __webpack_require__(2);
 
 	var _card2 = _interopRequireDefault(_card);
+
+	var _compCard = __webpack_require__(18);
+
+	var _compCard2 = _interopRequireDefault(_compCard);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -513,7 +530,7 @@
 
 	    cards.forEach(function (card, i) {
 	        allcardsP1 += (0, _card2.default)(card);
-	        allcardsP2 += "<div class='computerCard'>Computer Card</div>";
+	        allcardsP2 += (0, _compCard2.default)();
 	    });
 
 	    p1cards.innerHTML = allcardsP1;
@@ -582,6 +599,20 @@
 	var jade_interp;
 	;var locals_for_with = (locals || {});(function (player1Score, player2Score, winnerId) {
 	buf.push("<div id=\"results-container\"><p class=\"result player1\">Player 1 score: " + (jade.escape((jade_interp = player1Score) == null ? '' : jade_interp)) + "</p><p class=\"result player2\">Player 2 score: " + (jade.escape((jade_interp = player2Score) == null ? '' : jade_interp)) + "</p><p class=\"result message\">Player" + (jade.escape((jade_interp = winnerId) == null ? '' : jade_interp)) + " wins!</p></div>");}.call(this,"player1Score" in locals_for_with?locals_for_with.player1Score:typeof player1Score!=="undefined"?player1Score:undefined,"player2Score" in locals_for_with?locals_for_with.player2Score:typeof player2Score!=="undefined"?player2Score:undefined,"winnerId" in locals_for_with?locals_for_with.winnerId:typeof winnerId!=="undefined"?winnerId:undefined));;return buf.join("");
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var jade = __webpack_require__(3);
+
+	module.exports = function template(locals) {
+	var buf = [];
+	var jade_mixins = {};
+	var jade_interp;
+
+	buf.push("<div class=\"computerCard card\"><img src=\"https://cdn3.vox-cdn.com/uploads/branded_hub/sbnu_logo/395/mmafighting.com.full.383144.png\" alt=\"Computers Card\"></div>");;return buf.join("");
 	}
 
 /***/ }
